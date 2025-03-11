@@ -1,4 +1,4 @@
-import { cart, removeFromCart } from "../data/cart.js";
+import { cart, removeFromCart, updateDeliveryOption } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
@@ -85,7 +85,7 @@ function deliveryOptionsHTML(matchingProduct, cartItem) {
       deliveryOption.priceCents === 0
         ? "FREE"
         : `$${formatCurrency(deliveryOption.priceCents)}`;
-    html += `<div class="delivery-option">
+    html += `<div class="delivery-option js-delivery-option">
             <input
             type="radio"
             ${isChecked ? "checked" : ""}
@@ -113,4 +113,8 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
     );
     container.remove();
   });
+});
+
+document.querySelectorAll(".js-delivery-option").forEach((deliveryOption) => {
+  deliveryOption.addEventListener("click", () => {});
 });
