@@ -85,7 +85,9 @@ function deliveryOptionsHTML(matchingProduct, cartItem) {
       deliveryOption.priceCents === 0
         ? "FREE"
         : `$${formatCurrency(deliveryOption.priceCents)}`;
-    html += `<div class="delivery-option js-delivery-option">
+    html += `<div class="delivery-option js-delivery-option" data-product-id="${
+      matchingProduct.id
+    }" data-delivery-option-id="${deliveryOption.id}">
             <input
             type="radio"
             ${isChecked ? "checked" : ""}
@@ -116,5 +118,8 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
 });
 
 document.querySelectorAll(".js-delivery-option").forEach((deliveryOption) => {
-  deliveryOption.addEventListener("click", () => {});
+  deliveryOption.addEventListener("click", () => {
+    const { productId, deliveryOptionId } = deliveryOption.dataset;
+    updateDeliveryOption(productId, deliveryOptionId);
+  });
 });
