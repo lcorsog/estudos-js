@@ -79,7 +79,6 @@ function deliveryOptionsHTML(matchingProduct, cartItem) {
     const dateString = deliveryDate.format("dddd, MMMM D");
 
     const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
-    console.log(isChecked);
 
     const priceString =
       deliveryOption.priceCents === 0
